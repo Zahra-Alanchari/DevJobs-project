@@ -1,5 +1,11 @@
-export default function Main(){
+
+import React from "react";
+import Body from "./Body";
+import Header from "./Header";
+
+export default function Main({data}){
     return <div>
-        <h1>hi</h1>
+        <Header/>
+        <Body data={data}/>
     </div>
 }

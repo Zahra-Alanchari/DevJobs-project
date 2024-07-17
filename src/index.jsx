@@ -1,14 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './style.css'
-import Main from './components/Main';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./style.css";
+import { Provider, store } from "./redux/store";
+import App from "./App";
 
-const App = () => {
-  return (
-    <div>
-      <h1>hey</h1>
-    </div>
-  )
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
