@@ -1,89 +1,159 @@
 * {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
-  h1 {
-    background-color: red;
-  }
-  .header {
-    height: 136px;
-    width: 375px;
-    margin: 0 auto;
-    background-image: url("/asset/mobile/bg-pattern-header.svg");
-  }
-  .btn {
-    width: 315px;
-    height: 50px;
-    border-radius: 5px;
-    box-shadow: 0 0 3px rgba(205, 202, 202, 0.809);
-    /* border: 1px solid rgb(197, 188, 188); */
-    position: relative;
-    top: 80px;
-    left: 24px;
-  }
-  .filter-btn {
-    width: 30px;
-    position: absolute;
-    top: 125px;
-    left: 410px;
-  }
-  .xc {
-    display: flex;
-    justify-content: space-around;
-  }
-  /* .logoIcon{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+h1 {
+  background-color: red;
+}
+.header {
+  height: 136px;
+  width: 375px;
+  margin: 0 auto;
+  background-image: url("../assets/mobile/bg-pattern-header.svg");
+}
+.btn {
+  width: 315px;
+  height: 50px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(205, 202, 202, 0.809);
+  /* border: 1px solid rgb(197, 188, 188); */
+  position: relative;
+  top: 60px;
+  left: 24px;
+}
+.filter-btn {
+  width: 30px;
+  position: absolute;
+  top: 125px;
+  left: 410px;
+}
+.xc {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+/* .logoIcon{
       background-color: red;
   } */
-  .searchicon {
-    background-color: red;
-  }
-  .btn::placeholder {
-    padding-left: 10px;
-  }
-  .btn[placeholder] {
-    padding-left: 12px;
-  }
-  .body {
-    width: 327px;
-    background-color: red;
-    height: 100px;
-    position: absolute;
-    top: 200px;
-    left: 292px;
-  }
-  .content {
-    height: 1036px;
-    /* overflow:visible; */
-    /* display:; */
-    /* float: left; */
-    width: 375px;
-    margin: 0 auto;
-    background-color: grey;
-  }
-  .item {
-    background-color: white;
-    display: block;
-    /* position: absolute;
+.searchicon {
+  background-color: red;
+}
+.btn::placeholder {
+  padding-left: 10px;
+}
+.btn[placeholder] {
+  padding-left: 12px;
+}
+.body {
+  width: 327px;
+  /* background-color: red; */
+  height: 100px;
+  position: absolute;
+  top: 200px;
+  left: 292px;
+}
+.content {
+  height: 2736px;
+  /* overflow:visible; */
+  /* display:inline-block; */
+  /* float: left; */
+  width: 375px;
+  margin: 0 auto;
+  background-color: grey;
+}
+.item {
+  background-color: white;
+  margin-bottom: 70px;
+  /* height: 80px; */
+  /* display: block; */
+  /* position: absolute;
     top: 10px;
     width: 327px; */
-  }
-  .scoot {
-    background-color: blue;
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
-    vertical-align: middle;
-    position: absolute;
-    top: -30px;
-    left: 30px;
-  }
-  .scoot::after {
+}
+.scoot {
+  background-color: blue;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  vertical-align: middle;
+  position: absolute;
+  margin-top: -40px;
+  margin-left: 30px;
+  /* margin: 30px; */
+  /* top: -30px;
+    left: 30px; */
+}
+/* .scoot::after {
     content: "";
     display: block;
     clear: both;
-  }
-  .mohtava{
-      margin: 30px;
-  }
+  } */
+.mohtava {
+  margin: 30px;
+  padding-top: 30px;
+  /* margin-top: 50px; */
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 16px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  left: 6px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

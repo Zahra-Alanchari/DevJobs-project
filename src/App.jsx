@@ -12,7 +12,7 @@ export default function App() {
   console.log(data, "data");
   return (
     <>
-      <Main/>
+      <Main data={data}/>
     </>
   );
 }

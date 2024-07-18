@@ -1,12 +1,12 @@
 import React from "react";
+
 export default function Body({ data }) {
   return (
     <div className="content">
       <div className="body">
-
-        ihiiiii
-        {/* {data.map((item) => (
+        {data.map((item) => (
           <div className="item">
+            <img className="scoot" src={item.logo} alt="scoot" />
             <div className="mohtava">
               <div>
                 {item.postedAt} . {item.contract}
@@ -16,7 +16,7 @@ export default function Body({ data }) {
               <div>{item.location}</div>
             </div>
           </div>
-        ))} */}
+        ))}
 
         {/* <div className="item">
           <div className="mohtava">
@@ -26,8 +26,6 @@ export default function Body({ data }) {
             <div>{data.location}</div>
           </div>
         </div> */}
-
-
       </div>
     </div>
   );
