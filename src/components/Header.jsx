@@ -11,10 +11,9 @@ export default function Header() {
       <div className="xc">
         <LogoIcon />
         <Moon />
-        <ToggleIcon/>
+        <ToggleIcon />
         <SunIcon />
       </div>
-      {/* <InputText /> */}
     </div>
   );
 }

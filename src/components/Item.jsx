@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 
-const Item = ({ data, setId }) => {
+const Item = ({ data, setId,setSelectedData, selectedData  }) => {
     
   function handleClick(e) {
     const target = e.target;
     console.log(target, "target");
     setId(target.id);
   }
+  const filteredData = data.filter((item) => {
+    //if no input the return the original
+    if (selectedData === '') {
+        return item;
+    }
+    //return the item which contains the user input
+    else {
+        return item.position.toLowerCase().includes(selectedData)
+    }
+})
 
   return (
     <div onClick={handleClick}>
-      {data.map((item) => (
+      {filteredData.map((item) => (
         <li  id={item.id} className="item">
           <img className="scoot" src={item.logo} alt="scoot" />
           <div className="mohtava">

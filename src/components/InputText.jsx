@@ -1,15 +1,16 @@
 import FilterIcon from "../icon/FilterIcon";
 import React, { useState } from "react";
 
-export default function InputText() {
-  const [content, setContent] = useState("")
+export default function InputText({setSelectedData, selectedData}) {
+  // const [content, setContent] = useState("")
   function handleChange(e){
-    setContent(e.target.value)
+    const data = e.target.value.toLowerCase()
+    setSelectedData(data)
   }
-  console.log(content,"content")
+  console.log(selectedData,"content")
   return (
     <div>
-      <input value={content} onChange={(e)=> handleChange(e)} className="btn" type="text" placeholder="filter by title"/>
+      <input value={selectedData} onChange={(e)=> handleChange(e)} className="btn" type="text" placeholder="filter by title"/>
       <div>
       <FilterIcon/>
       </div>

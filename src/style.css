@@ -2,7 +2,7 @@
   border: 0;
   margin: 0;
   padding: 0;
-  list-style-type: none;
+  /* list-style-type: none; */
   /* list-style: none; */
 }
 h1 {
@@ -31,6 +31,9 @@ h1 {
   top: 125px;
   left: 410px;
   z-index: 2;
+}
+.list{
+  list-style-type: circle;
 }
 .xc {
   padding-top: 20px;
