@@ -1,32 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Item from "./Item";
 
-export default function Body({ data }) {
+export default function Body({ data, id, setId }) {
+  const [text, setText] = useState("0");
+
   return (
     <div className="content">
-      <div className="body">
-        {data.map((item) => (
-          <div className="item">
-            <img className="scoot" src={item.logo} alt="scoot" />
-            <div className="mohtava">
-              <div>
-                {item.postedAt} . {item.contract}
-              </div>
-              <div>{item.position}</div>
-              <div>{item.company}</div>
-              <div>{item.location}</div>
-            </div>
-          </div>
-        ))}
-
-        {/* <div className="item">
-          <div className="mohtava">
-            <div>{data.postedAt} . {data.contract}</div>
-            <div>{data.position}</div>
-            <div>{data.company}</div>
-            <div>{data.location}</div>
-          </div>
-        </div> */}
-      </div>
+      <Link to="/detail" className="body">
+        <Item data={data} text={text} setId={setId} />
+      </Link>
     </div>
   );
 }

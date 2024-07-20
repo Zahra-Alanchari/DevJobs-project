@@ -14,7 +14,7 @@ export default function Header() {
         <ToggleIcon/>
         <SunIcon />
       </div>
-      <InputText />
+      {/* <InputText /> */}
     </div>
   );
 }

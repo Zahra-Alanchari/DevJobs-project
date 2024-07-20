@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
+  /* list-style: none; */
 }
 h1 {
   background-color: red;
@@ -20,14 +21,16 @@ h1 {
   box-shadow: 0 0 3px rgba(205, 202, 202, 0.809);
   /* border: 1px solid rgb(197, 188, 188); */
   position: relative;
-  top: 60px;
-  left: 24px;
+  top: -40px;
+  left: 290px;
+  z-index: 1;
 }
 .filter-btn {
   width: 30px;
   position: absolute;
   top: 125px;
   left: 410px;
+  z-index: 2;
 }
 .xc {
   padding-top: 20px;
@@ -51,8 +54,8 @@ h1 {
   /* background-color: red; */
   height: 100px;
   position: absolute;
-  top: 200px;
-  left: 292px;
+  top: 70px;
+  left: 22px;
 }
 .content {
   height: 2736px;
@@ -60,17 +63,22 @@ h1 {
   /* display:inline-block; */
   /* float: left; */
   width: 375px;
+  position: relative;
+  /* z-index: -1; */
+  top: -50px;
   margin: 0 auto;
   background-color: grey;
 }
 .item {
   background-color: white;
   margin-bottom: 70px;
+  /* height: 60px; */
+  /* z-index: 1; */
   /* height: 80px; */
   /* display: block; */
-  /* position: absolute;
-    top: 10px;
-    width: 327px; */
+  /* position: absolute; */
+    /* top: 10px; */
+    /* width: 327px; */
 }
 .scoot {
   background-color: blue;

@@ -4,10 +4,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    items:[],
+    
   }
 const filterSlice = createSlice({
-    name: 'jobs',
+    name: 'mode',
     initialState,
     reducers:{
       
