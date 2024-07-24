@@ -1,12 +1,13 @@
 import React from "react";
-export default function CompanyProfile({ data }) {
+export default function CompanyProfile({item}) {
+  console.log(item,"item chi shod")
   return (
     <>
       <img src="" alt="" />
       <div>
-        <span>{data.company}</span>
-        <span>{data.company}.com</span>
-        <span>{data.website}</span>
+        <span>{item.company}</span>
+        <span>{item.company}.com</span>
+        <span>{item.website}</span>
       </div>
     </>
   );

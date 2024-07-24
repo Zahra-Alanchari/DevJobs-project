@@ -1,28 +1,28 @@
 import React from "react";
 
-const JobDetails = ({data}) => {
+const JobDetails = ({item}) => {
   return (
     <div>
       <li className="item">
-        <img className="scoot" src={data.logo} alt="scoot" />
+        <img className="scoot" src={item.logo} alt="scoot" />
         <div className="mohtava">
           <div>
-            {data.postedAt} . {data.contract}
+            {item.postedAt} . {item.contract}
           </div>
-          <div>{data.position}</div>
-          <div>{data.company}</div>
-          <div>{data.location}</div>
+          <div>{item.position}</div>
+          <div>{item.company}</div>
+          <div>{item.location}</div>
         </div>
       </li>
 
       <button>Apply now </button>
 
       <div>
-        <p>{data.description}</p>
+        <p>{item.description}</p>
         <h1>Requirements</h1>
-        <p>{data.requirements.content}</p>
+        <p>{item.requirements?.content}</p>
         <ul className="list">
-            {data.requirements.items.map((item)=> (<li className="list">{item}</li>))}
+            {item.requirements?.items.map((item)=> (<li className="list">{item}</li>))}
         </ul>
         <h1>what you will do</h1>
       </div>

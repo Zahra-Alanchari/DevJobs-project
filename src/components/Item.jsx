@@ -1,27 +1,29 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { jobFetcher } from "../fetcher";
 
-const Item = ({ data, setId,setSelectedData, selectedData  }) => {
-    
+const Item = ({ setSelectedData, selectedData, setId, id }) => {
   function handleClick(e) {
     const target = e.target;
-    console.log(target, "target");
     setId(target.id);
   }
-  const filteredData = data.filter((item) => {
-    //if no input the return the original
-    if (selectedData === '') {
-        return item;
-    }
-    //return the item which contains the user input
-    else {
-        return item.position.toLowerCase().includes(selectedData)
-    }
-})
+  const { data, isLoading } = useQuery({
+    queryKey: ["jobs"],
+    queryFn: jobFetcher,
+  });
 
+  if (isLoading) return <div>Loading...</div>;
+  const filteredData = data.filter((job) => {
+    if (selectedData === "") {
+      return job;
+    } else {
+      return job.position.toLowerCase().includes(selectedData);
+    }
+  });
   return (
     <div onClick={handleClick}>
       {filteredData.map((item) => (
-        <li  id={item.id} className="item">
+        <li key={item.id} id={item.id} className="item">
           <img className="scoot" src={item.logo} alt="scoot" />
           <div className="mohtava">
             <div>
