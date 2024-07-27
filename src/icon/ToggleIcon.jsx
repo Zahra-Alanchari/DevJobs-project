@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeMode } from "../redux/Slice";
+import { changeMode, updateMode } from "../redux/Slice";
 export default function ToggleIcon() {
 
-  const mode = useSelector(state => state.mode.mode)
+  const mode = useSelector(state => state.job.lightMode)
   const dispatch = useDispatch()
   function handleClick(){
-    dispatch(changeMode(!mode))
+    dispatch(updateMode(!mode))
     console.log(mode,"mode")
   }
 
@@ -14,7 +14,7 @@ export default function ToggleIcon() {
   return (
     <div>
       <label class="switch">
-        <input type="checkbox" onClick={handleClick} />
+        <input onClick={handleClick} type="checkbox"  />
         <span class="slider round"></span>
       </label>
     </div>

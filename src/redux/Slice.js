@@ -1,18 +1,37 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import getJob from "../jobsApi";
+import { fetchgetAllJobs } from "./action";
 
 const initialState = {
-  mode: false,
+  lightMode: true,
+  job: [],
+  input: "",
+  id:null
 };
 
-const modeSlice = createSlice({
-  name: "mode",
+const jobSlice = createSlice({
+  name: "jobs",
   initialState,
   reducers: {
-    changeMode(state, action) {
-      state.mode = action.payload;
+    updateInput(state, action) {
+      state.input = action.payload;
     },
+    updateMode(state,action){
+      state.lightMode = !state.lightMode
+    },
+    updateSelectedId(state,action){
+      state.id = action.payload
+    },
+    updateSelectedJob(state,action){
+      state.job =state.job.filter(item => item.id === action.payload)
+    }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchgetAllJobs.fulfilled, (state, action) => {
+      state.job = action.payload;
+    });
   },
 });
 
-export const { changeMode } = modeSlice.actions;
-export default modeSlice.reducer;
+export const { updateInput,updateMode,updateSelectedId,updateSelectedJob } = jobSlice.actions;
+export default jobSlice.reducer;

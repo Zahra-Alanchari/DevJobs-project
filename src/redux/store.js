@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import modeReducer from '../redux/Slice'
+import jobReducer from '../redux/Slice'
 
 const store = configureStore({
     reducer:{
-        mode:modeReducer
+        job:jobReducer
     }
 })
 

@@ -1,18 +1,56 @@
-import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
-import { jobFetcher } from "../fetcher";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchgetAllJobs } from "../redux/action";
+import { updateSelectedId } from "../redux/Slice";
+import InputText from "./InputText";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-const Item = ({ setSelectedData, selectedData, setId, id }) => {
-  function handleClick(e) {
-    const target = e.target;
-    setId(target.id);
+const Items = styled.ul`
+  background-color: white;
+  padding: 22px;
+  margin: 23px;
+  border-radius: 5px;
+
+  & li {
+    margin-bottom: 15px;
   }
-  const { data, isLoading } = useQuery({
-    queryKey: ["jobs"],
-    queryFn: jobFetcher,
-  });
+  & img {
+    background-color: blue;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    vertical-align: middle;
+    position: absolute;
+    margin-top: -40px;
+    margin-left: -10px;
+  }
+`;
+const Detail = styled.li`
+  color: #6e8098;
+`;
+const Position = styled.li`
+  color: #19202d;
+`;
+const Location = styled.li`
+  color: #5964e0;
+`;
 
-  if (isLoading) return <div>Loading...</div>;
+const Item = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchgetAllJobs());
+  }, [dispatch]);
+  const data = useSelector((state) => state.job.job);
+  const selectedData = useSelector((state) => state.job.input);
+
+  // console.log(data, "dataw");
+  function handleClick(e) {
+    const target = e.target.id;
+    dispatch(updateSelectedId(target));
+  }
+
   const filteredData = data.filter((job) => {
     if (selectedData === "") {
       return job;
@@ -21,21 +59,30 @@ const Item = ({ setSelectedData, selectedData, setId, id }) => {
     }
   });
   return (
-    <div onClick={handleClick}>
-      {filteredData.map((item) => (
-        <li key={item.id} id={item.id} className="item">
-          <img className="scoot" src={item.logo} alt="scoot" />
-          <div className="mohtava">
-            <div>
-              {item.postedAt} . {item.contract}
-            </div>
-            <div>{item.position}</div>
-            <div>{item.company}</div>
-            <div>{item.location}</div>
-          </div>
-        </li>
-      ))}
-    </div>
+    <>
+      <div>
+        <InputText />
+      </div>
+      <Link to="/detail">
+        <div>
+          {filteredData.map((item) => (
+            <Items onClick={handleClick} key={item.id} id={item.id}>
+              <li>
+                <img src={item.logo} alt="scoot" />
+              </li>
+              <li>
+                <Detail>
+                  {item.postedAt} . {item.contract}
+                </Detail>
+                <Position><h4>{item.position}</h4></Position>
+                <Detail>{item.company}</Detail>
+                <Location>{item.location}</Location>
+              </li>
+            </Items>
+          ))}
+        </div>
+      </Link>
+    </>
   );
 };
 

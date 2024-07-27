@@ -2,28 +2,36 @@ import React from "react";
 import Header from "./Header";
 import CompanyProfile from "./CompanyProfile";
 import JobDetails from "./JobDetails";
-import { useQuery } from "@tanstack/react-query";
-import { jobFetcher, jobItemFetcher } from "../fetcher";
+import styled from "styled-components";
+// import { useQuery } from "@tanstack/react-query";
+// import { jobFetcher, jobItemFetcher } from "../fetcher";
 
+const MainBody = styled.div`
+  width: 375px;
+  background-color: #00ff2f;
+  position: absolute;
+  padding-top: 65px;
+  top: -11px;
+  left: 0px;
+  height: 1000px;
+`;
+const MainContent = styled.div`
+  width: 375px;
+  position: relative;
+  top: 10px;
+  margin: 0 auto;
+`;
 
-export default function Details({ id }) {
-  const { isLoading, data } = useQuery({
-    queryKey: ["jobDetail"],
-    queryFn: jobFetcher,
-  });
-  if (isLoading) return <div>Loading...</div>;
-
-
-  console.log(data, "dataid");
-  const clickJob = data.filter((item) => item.id === id);
-  console.log(clickJob, "click");
-
-  
+export default function Details() {
   return (
-    <div>
+    <>
       <Header />
-      <CompanyProfile item={clickJob[0]} />
-      <JobDetails item={clickJob[0]} />
-    </div>
+      <MainContent>
+        <MainBody>
+          <CompanyProfile />
+          <JobDetails />
+        </MainBody>
+      </MainContent>
+    </>
   );
 }
