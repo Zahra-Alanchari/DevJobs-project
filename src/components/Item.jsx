@@ -66,18 +66,21 @@ const Item = () => {
     dispatch(fetchgetAllJobs());
   }, [dispatch]);
   const data = useSelector((state) => state.job.job);
-  const selectedData = useSelector((state) => state.job.input);
+  const selectedTitleData = useSelector((state) => state.job.input);
+  const selectedLocationData = useSelector((state) => state.job.location);
   function handleClick(e) {
     const target = e.target.id;
-    // e.stopPropgation()
     dispatch(updateSelectedId(target));
   }
 
   const filteredData = data.filter((job) => {
-    if (selectedData === "") {
+    if (selectedTitleData === "" && selectedLocationData === "") {
       return job;
     } else {
-      return job.position.toLowerCase().includes(selectedData);
+      return (
+        job.position.toLowerCase().includes(selectedTitleData) &&
+        job.location.toLowerCase().includes(selectedLocationData)
+      );
     }
   });
   return (

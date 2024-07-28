@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import FilterIcon from "../icon/FilterIcon";
 import React from "react";
-import { updateInput } from "../redux/Slice";
+import { setLocationFilter, updateInput } from "../redux/Slice";
 import styled from "styled-components";
 import SearchIcon from "../icon/SearchIcon";
 
@@ -61,7 +61,7 @@ const LocBtn = styled.input`
     height: 80px;
   }
 `;
-const SearchIconbtn = styled.div`
+const SearchIconbtn = styled.button`
   background-color: #5964e0;
   height: 48px;
   width: 48px;
@@ -136,11 +136,20 @@ const InputContainer = styled.div`
 
 export default function InputText() {
   const inputContent = useSelector((state) => state.job.input);
+  const locationInput = useSelector((state) => state.job.location);
   const dispatch = useDispatch();
   function handleChange(e) {
     const data = e.target.value.toLowerCase();
     dispatch(updateInput(data));
   }
+  const data = useSelector((state) => state.job.job);
+  const filters = useSelector((state) => state.filters);
+  const handleLocationChange = (e) => {
+    dispatch(setLocationFilter(e.target.value));
+  };
+  // function handleClick() {
+  //   dispatch(setProductFilter(filteredProducts));
+  // }
 
   return (
     <div>
@@ -151,14 +160,19 @@ export default function InputText() {
           placeholder="filter by title"
           value={inputContent}
         ></TextBtn>
-        <LocBtn type="text" placeholder="filter by location"></LocBtn>
+        <LocBtn
+          type="text"
+          onChange={handleLocationChange}
+          value={locationInput}
+          placeholder="filter by location"
+        ></LocBtn>
         <label>
           <input type="checkbox" />
           Full Time only
         </label>
-      <div>
-        <FilterIcon />
-      </div>
+        <div>
+          <FilterIcon />
+        </div>
       </InputContainer>
       <SearchIconbtn>
         <span>
