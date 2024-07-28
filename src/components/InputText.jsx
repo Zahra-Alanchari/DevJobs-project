@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import FilterIcon from "../icon/FilterIcon";
 import React from "react";
-import { setLocationFilter, updateInput } from "../redux/Slice";
+import { setLocationFilter, updateInput, workTimeFilter } from "../redux/Slice";
 import styled from "styled-components";
 import SearchIcon from "../icon/SearchIcon";
 
@@ -137,19 +137,24 @@ const InputContainer = styled.div`
 export default function InputText() {
   const inputContent = useSelector((state) => state.job.input);
   const locationInput = useSelector((state) => state.job.location);
+  const data = useSelector((state) => state.job.job);
+  const filters = useSelector((state) => state.filters);
   const dispatch = useDispatch();
   function handleChange(e) {
     const data = e.target.value.toLowerCase();
     dispatch(updateInput(data));
   }
-  const data = useSelector((state) => state.job.job);
-  const filters = useSelector((state) => state.filters);
   const handleLocationChange = (e) => {
     dispatch(setLocationFilter(e.target.value));
   };
   // function handleClick() {
   //   dispatch(setProductFilter(filteredProducts));
   // }
+  function handleCheck(e){
+    const status = e.target.checked
+    console.log(status,"status")
+    dispatch(workTimeFilter(status))
+  }
 
   return (
     <div>
@@ -167,7 +172,7 @@ export default function InputText() {
           placeholder="filter by location"
         ></LocBtn>
         <label>
-          <input type="checkbox" />
+          <input onChange={handleCheck} type="checkbox" />
           Full Time only
         </label>
         <div>

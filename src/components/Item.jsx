@@ -68,18 +68,21 @@ const Item = () => {
   const data = useSelector((state) => state.job.job);
   const selectedTitleData = useSelector((state) => state.job.input);
   const selectedLocationData = useSelector((state) => state.job.location);
+  const selectedTimeData = useSelector(state=> state.job.fullTime)
   function handleClick(e) {
     const target = e.target.id;
     dispatch(updateSelectedId(target));
   }
+  console.log(selectedTimeData,"fulltime")
 
   const filteredData = data.filter((job) => {
-    if (selectedTitleData === "" && selectedLocationData === "") {
+    if (selectedTitleData === "" && selectedLocationData === "" && (selectedTimeData === "" || selectedTimeData === false) ) {
       return job;
     } else {
       return (
         job.position.toLowerCase().includes(selectedTitleData) &&
-        job.location.toLowerCase().includes(selectedLocationData)
+        job.location.toLowerCase().includes(selectedLocationData) &&
+        (selectedTimeData?job.contract === "Full Time": true)
       );
     }
   });
