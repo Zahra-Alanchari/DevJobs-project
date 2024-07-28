@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import FilterIcon from "../icon/FilterIcon";
-import React from "react";
-import { setLocationFilter, updateInput, workTimeFilter } from "../redux/Slice";
+import React, { useEffect } from "react";
+import {
+  fullFilter,
+  setLocationFilter,
+  updateInput,
+  workTimeFilter,
+} from "../redux/Slice";
 import styled from "styled-components";
 import SearchIcon from "../icon/SearchIcon";
 
@@ -147,15 +152,36 @@ export default function InputText() {
   const handleLocationChange = (e) => {
     dispatch(setLocationFilter(e.target.value));
   };
-  // function handleClick() {
-  //   dispatch(setProductFilter(filteredProducts));
-  // }
-  function handleCheck(e){
-    const status = e.target.checked
-    console.log(status,"status")
-    dispatch(workTimeFilter(status))
+  function handleCheck(e) {
+    const status = e.target.checked;
+    console.log(status, "status");
+    dispatch(workTimeFilter(status));
   }
 
+  const selectedTitleData = useSelector((state) => state.job.input);
+  const selectedLocationData = useSelector((state) => state.job.location);
+  const selectedTimeData = useSelector((state) => state.job.fullTime);
+  const showFilteredData = useSelector((state) => state.job.filteredData);
+  console.log(showFilteredData, "status");
+
+  function handleGetJob() {
+    const filterData = data.filter((job) => {
+      if (
+        selectedTitleData === "" &&
+        selectedLocationData === "" &&
+        (selectedTimeData === "" || selectedTimeData === false)
+      ) {
+        return job;
+      } else {
+        return (
+          job.position.toLowerCase().includes(selectedTitleData) &&
+          job.location.toLowerCase().includes(selectedLocationData) &&
+          (selectedTimeData ? job.contract === "Full Time" : true)
+        );
+      }
+    });
+    dispatch(fullFilter(filterData));
+  }
   return (
     <div>
       <InputContainer>
@@ -179,7 +205,7 @@ export default function InputText() {
           <FilterIcon />
         </div>
       </InputContainer>
-      <SearchIconbtn>
+      <SearchIconbtn onClick={handleGetJob}>
         <span>
           <SearchIcon />
         </span>

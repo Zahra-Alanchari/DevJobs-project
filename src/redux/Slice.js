@@ -8,7 +8,8 @@ const initialState = {
   input: "",
   id: null,
   location:"",
-  fullTime: ""
+  fullTime: "",
+  filteredData: ""
 };
 
 const jobSlice = createSlice({
@@ -33,6 +34,9 @@ const jobSlice = createSlice({
     workTimeFilter(state,action){
       state.fullTime = action.payload
     },
+    fullFilter(state,action){
+      state.filteredData = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchgetAllJobs.fulfilled, (state, action) => {
@@ -41,6 +45,6 @@ const jobSlice = createSlice({
   },
 });
 
-export const { updateInput, updateMode, updateSelectedId, updateSelectedJob,setTitleFilter,setLocationFilter,workTimeFilter } =
+export const { updateInput, updateMode, updateSelectedId, updateSelectedJob,setTitleFilter,setLocationFilter,workTimeFilter,fullFilter } =
   jobSlice.actions;
 export default jobSlice.reducer;

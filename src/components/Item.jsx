@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchgetAllJobs } from "../redux/action";
 import { updateSelectedId } from "../redux/Slice";
@@ -66,26 +66,11 @@ const Item = () => {
     dispatch(fetchgetAllJobs());
   }, [dispatch]);
   const data = useSelector((state) => state.job.job);
-  const selectedTitleData = useSelector((state) => state.job.input);
-  const selectedLocationData = useSelector((state) => state.job.location);
-  const selectedTimeData = useSelector(state=> state.job.fullTime)
+  const showFilteredData = useSelector((state) => state.job.filteredData);
   function handleClick(e) {
     const target = e.target.id;
     dispatch(updateSelectedId(target));
   }
-  console.log(selectedTimeData,"fulltime")
-
-  const filteredData = data.filter((job) => {
-    if (selectedTitleData === "" && selectedLocationData === "" && (selectedTimeData === "" || selectedTimeData === false) ) {
-      return job;
-    } else {
-      return (
-        job.position.toLowerCase().includes(selectedTitleData) &&
-        job.location.toLowerCase().includes(selectedLocationData) &&
-        (selectedTimeData?job.contract === "Full Time": true)
-      );
-    }
-  });
   return (
     <>
       <div>
@@ -93,23 +78,41 @@ const Item = () => {
       </div>
       <Link to="/detail">
         <Wrapper>
-          {filteredData.map((item) => (
-            <Items onClick={handleClick} key={item.id} id={item.id}>
-              <li>
-                <img src={item.logo} alt="scoot" />
-              </li>
-              <li>
-                <Detail>
-                  {item.postedAt} . {item.contract}
-                </Detail>
-                <Position>
-                  <h4>{item.position}</h4>
-                </Position>
-                <Detail>{item.company}</Detail>
-                <Location>{item.location}</Location>
-              </li>
-            </Items>
-          ))}
+          {showFilteredData === ""
+            ? data.map((item) => (
+                <Items onClick={handleClick} key={item.id} id={item.id}>
+                  <li>
+                    <img src={item.logo} alt="scoot" />
+                  </li>
+                  <li>
+                    <Detail>
+                      {item.postedAt} . {item.contract}
+                    </Detail>
+                    <Position>
+                      <h4>{item.position}</h4>
+                    </Position>
+                    <Detail>{item.company}</Detail>
+                    <Location>{item.location}</Location>
+                  </li>
+                </Items>
+              ))
+            : showFilteredData.map((item) => (
+                <Items onClick={handleClick} key={item.id} id={item.id}>
+                  <li>
+                    <img src={item.logo} alt="scoot" />
+                  </li>
+                  <li>
+                    <Detail>
+                      {item.postedAt} . {item.contract}
+                    </Detail>
+                    <Position>
+                      <h4>{item.position}</h4>
+                    </Position>
+                    <Detail>{item.company}</Detail>
+                    <Location>{item.location}</Location>
+                  </li>
+                </Items>
+              ))}
         </Wrapper>
       </Link>
     </>
