@@ -27,15 +27,9 @@ const jobSlice = createSlice({
     updateSelectedJob(state, action) {
       state.job = state.job.filter((item) => item.id === action.payload);
     },
-    setTitleFilter(state,action){
-      state.filters.title = action.payload
-    },
     setLocationFilter(state,action){
       state.location = action.payload
     },
-    setProductFilter(state,action){
-      state.filters.location = action.payload
-    }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchgetAllJobs.fulfilled, (state, action) => {
