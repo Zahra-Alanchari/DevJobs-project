@@ -69,6 +69,7 @@ const Item = () => {
   const selectedData = useSelector((state) => state.job.input);
   function handleClick(e) {
     const target = e.target.id;
+    // e.stopPropgation()
     dispatch(updateSelectedId(target));
   }
 

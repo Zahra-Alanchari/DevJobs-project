@@ -28,7 +28,7 @@ const MainBody = styled.div`
   }
   @media screen and (min-width: 1440px) {
     width: 1440px;
-    background-color: red;
+    /* background-color: red; */
   }
 `;
 

@@ -22,6 +22,19 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]",
+              context: path.resolve(__dirname, "..", "src"), // Ensure the context is set correctly
+              outputPath: "assets/", // Customize the output path if necessary
+            },
+          },
+        ],
+      }
     ],
   },
   output: {

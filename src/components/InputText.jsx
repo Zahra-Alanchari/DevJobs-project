@@ -15,22 +15,50 @@ const TextBtn = styled.input`
   left: 22px;
   z-index: 1;
   &::placeholder {
-    padding-left: 12px;
+    padding-left: 18px;
     color: #6e8098;
   }
-  &[placeholder]{
+  &[placeholder] {
     color: black;
-    padding-left: 13px;
+    padding-left: 28px;
   }
-  @media screen and (min-width: 768px){
-    width: 689px;
+  @media screen and (min-width: 768px) {
+    width: 190px;
     height: 80px;
+    position: static;
+    border-radius: 0;
+    top: 0;
     left: 33px;
+    border-right: 1px solid gray;
   }
-  @media screen and (min-width: 1440px){
-    width: 1110px;
+  @media screen and (min-width: 1440px) {
+    width: 350px;
     height: 80px;
     left: 145px;
+  }
+`;
+const LocBtn = styled.input`
+  display: none;
+  border-radius: 5px;
+  &::placeholder {
+    padding-left: 18px;
+    color: #6e8098;
+  }
+  &[placeholder] {
+    color: black;
+    padding-left: 28px;
+  }
+  @media screen and (min-width: 768px) {
+    display: inline-block;
+    width: 190px;
+    height: 80px;
+    top: 0;
+    border-right: 1px solid gray;
+    border-radius: 0;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 350px;
+    height: 80px;
   }
 `;
 const SearchIconbtn = styled.div`
@@ -45,14 +73,64 @@ const SearchIconbtn = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  @media screen and (min-width: 768px){
+  cursor: pointer;
+  & span:last-child {
+    display: none;
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+      color: white;
+    }
+  }
+  & span:first-child {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+  @media screen and (min-width: 768px) {
     width: 80px;
     height: 48px;
+    right: 76px;
   }
-  @media screen and (min-width: 1440px){
+  @media screen and (min-width: 1440px) {
     width: 123px;
     height: 48px;
     right: 187px;
+  }
+`;
+
+const InputContainer = styled.div`
+  & input + label {
+    display: none;
+    margin-right: 40px;
+    @media screen and (min-width: 768px) {
+      background-color: white;
+      width: 240px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media screen and (min-width: 1440px) {
+      width: 415px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    width: 640px;
+    height: 80px;
+    border-radius: 5px;
+    background-color: white;
+    position: absolute;
+    top: -26px;
+    left: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1110px;
+    height: 80px;
+    left: 170px;
   }
 `;
 
@@ -66,17 +144,27 @@ export default function InputText() {
 
   return (
     <div>
-      <TextBtn
-        onChange={handleChange}
-        type="text"
-        placeholder="filter by title"
-        value={inputContent}
-      ></TextBtn>
+      <InputContainer>
+        <TextBtn
+          onChange={handleChange}
+          type="text"
+          placeholder="filter by title"
+          value={inputContent}
+        ></TextBtn>
+        <LocBtn type="text" placeholder="filter by location"></LocBtn>
+        <label>
+          <input type="checkbox" />
+          Full Time only
+        </label>
       <div>
         <FilterIcon />
       </div>
+      </InputContainer>
       <SearchIconbtn>
-        <SearchIcon />
+        <span>
+          <SearchIcon />
+        </span>
+        <span>Search</span>
       </SearchIconbtn>
     </div>
   );
