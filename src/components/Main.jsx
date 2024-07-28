@@ -8,6 +8,9 @@ const MainContent = styled.div`
   position: relative;
   top: -50px;
   margin: 0 auto;
+  @media screen and (min-width: 768px){
+    width: 768px;
+  }
 `;
 const MainBody = styled.div`
   width: 375px;
@@ -16,6 +19,11 @@ const MainBody = styled.div`
   padding-top: 65px;
   top: 41px;
   left: 0px;
+  @media screen and (min-width: 768px){
+    background-color: red;
+    width: 768px;
+    
+  }
 `;
 
 export default function Main() {

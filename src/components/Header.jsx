@@ -11,6 +11,11 @@ const Head = styled.div`
   margin: 0 auto;
   background-color: #2ca3c7;
   /* background-image: url("../assets/mobile/bg-pattern-header.svg"); */
+  @media screen and (min-width: 768px){
+    /* background-image: url("../assets/mobile/bg-pattern-header.svg"); */
+    width: 768px;
+    height: 160px;
+  }
 `;
 
 const HeaderIcon = styled.div`

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchgetAllJobs } from "../redux/action";
 import { updateSelectedId } from "../redux/Slice";
@@ -25,7 +25,20 @@ const Items = styled.ul`
     margin-top: -40px;
     margin-left: -10px;
   }
+  @media screen and (min-width: 768px){
+    width: 250px;
+    height: 253px;
+    
+  }
 `;
+const Wrapper = styled.div`
+  @media screen and (min-width: 768px){
+    width: 689px;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 auto;
+  }
+`
 const Detail = styled.li`
   color: #6e8098;
 `;
@@ -44,8 +57,6 @@ const Item = () => {
   }, [dispatch]);
   const data = useSelector((state) => state.job.job);
   const selectedData = useSelector((state) => state.job.input);
-
-  // console.log(data, "dataw");
   function handleClick(e) {
     const target = e.target.id;
     dispatch(updateSelectedId(target));
@@ -64,7 +75,7 @@ const Item = () => {
         <InputText />
       </div>
       <Link to="/detail">
-        <div>
+        <Wrapper>
           {filteredData.map((item) => (
             <Items onClick={handleClick} key={item.id} id={item.id}>
               <li>
@@ -74,13 +85,15 @@ const Item = () => {
                 <Detail>
                   {item.postedAt} . {item.contract}
                 </Detail>
-                <Position><h4>{item.position}</h4></Position>
+                <Position>
+                  <h4>{item.position}</h4>
+                </Position>
                 <Detail>{item.company}</Detail>
                 <Location>{item.location}</Location>
               </li>
             </Items>
           ))}
-        </div>
+        </Wrapper>
       </Link>
     </>
   );

@@ -5,21 +5,14 @@ import styled from "styled-components";
 const JobDescription = styled.div`
   background-color: white;
   width: 327px;
-  height: 205px;
   position: absolute;
   top: 220px;
   left: 23px;
 `;
 
 const Items = styled.ul`
-  /* background-color: white; */
   padding: 22px;
   margin: 23px;
-  /* border-radius: 5px; */
-
-  & li {
-    /* margin-bottom: 5px; */
-  }
 `;
 const Detail = styled.li`
   color: #6e8098;
@@ -39,15 +32,40 @@ const ApplyButton = styled.button`
   border-radius: 5px;
   background-color: #5964e0;
   color: white;
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
 `;
-const Introduction= styled.div`
-  width: 320px;
+const ApplyButtonend = styled.button`
+  width: 279px;
+  height: 48px;
+  border-radius: 5px;
+  background-color: #5964e0;
+  color: white;
+`;
+const Introduction = styled.div`
+  width: 300px;
   height: 205px;
   position: absolute;
-  top: 420px;
+  top: 210px;
   left: 23px;
-`
-
+  color: #6e8098;
+  /* display: flex; */
+`;
+const Title = styled.h3`
+  color: black;
+  margin: 30px 0;
+`;
+const ListDec = styled.li`
+  list-style-type: decimal;
+  margin: 15px;
+`;
+const ListDic = styled.li`
+  list-style-type: disc;
+  margin: 15px;
+`;
 const JobDetails = () => {
   const data = useSelector((state) => state.job.job);
   const id = useSelector((state) => state.job.id);
@@ -70,14 +88,21 @@ const JobDetails = () => {
 
       <Introduction>
         <p>{selectedJob.description}</p>
-        <h1>Requirements</h1>
+        <Title>Requirements</Title>
         <p>{selectedJob.requirements.content}</p>
-        <ul className="list">
+        <ul>
           {selectedJob.requirements.items.map((item) => (
-            <li className="list">{item}</li>
+            <ListDic>{item}</ListDic>
           ))}
         </ul>
-        <h1>what you will do</h1>
+        <Title>what you will do</Title>
+        <p>{selectedJob.role.content}</p>
+        <ul>
+          {selectedJob.role.items.map((item) => (
+            <ListDec>{item}</ListDec>
+          ))}
+        </ul>
+        <ApplyButtonend>Apply now </ApplyButtonend>
       </Introduction>
     </JobDescription>
   );

@@ -3,8 +3,6 @@ import Header from "./Header";
 import CompanyProfile from "./CompanyProfile";
 import JobDetails from "./JobDetails";
 import styled from "styled-components";
-// import { useQuery } from "@tanstack/react-query";
-// import { jobFetcher, jobItemFetcher } from "../fetcher";
 
 const MainBody = styled.div`
   width: 375px;
@@ -13,7 +11,7 @@ const MainBody = styled.div`
   padding-top: 65px;
   top: -11px;
   left: 0px;
-  height: 1000px;
+  height: 2127px;
 `;
 const MainContent = styled.div`
   width: 375px;

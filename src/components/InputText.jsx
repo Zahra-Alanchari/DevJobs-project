@@ -18,6 +18,15 @@ const TextBtn = styled.input`
     padding-left: 12px;
     color: #6e8098;
   }
+  &[placeholder]{
+    color: black;
+    padding-left: 13px;
+  }
+  @media screen and (min-width: 768px){
+    width: 689px;
+    height: 80px;
+    left: 33px;
+  }
 `;
 const SearchIconbtn = styled.div`
   background-color: #5964e0;
