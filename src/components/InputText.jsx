@@ -27,6 +27,11 @@ const TextBtn = styled.input`
     height: 80px;
     left: 33px;
   }
+  @media screen and (min-width: 1440px){
+    width: 1110px;
+    height: 80px;
+    left: 145px;
+  }
 `;
 const SearchIconbtn = styled.div`
   background-color: #5964e0;
@@ -34,12 +39,21 @@ const SearchIconbtn = styled.div`
   width: 48px;
   position: absolute;
   top: -10px;
-  left: 270px;
+  right: 55px;
   z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
+  @media screen and (min-width: 768px){
+    width: 80px;
+    height: 48px;
+  }
+  @media screen and (min-width: 1440px){
+    width: 123px;
+    height: 48px;
+    right: 187px;
+  }
 `;
 
 export default function InputText() {

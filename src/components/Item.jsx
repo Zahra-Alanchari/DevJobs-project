@@ -14,6 +14,11 @@ const Items = styled.ul`
 
   & li {
     margin-bottom: 15px;
+    &:last-of-type {
+      @media screen and (min-width: 768px) {
+        margin-top: 35px;
+      }
+    }
   }
   & img {
     background-color: blue;
@@ -25,20 +30,25 @@ const Items = styled.ul`
     margin-top: -40px;
     margin-left: -10px;
   }
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     width: 250px;
-    height: 253px;
-    
+    height: 200px;
+  }
+  @media screen and (min-width: 1440px) {
   }
 `;
 const Wrapper = styled.div`
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     width: 689px;
     display: flex;
     flex-flow: row wrap;
     margin: 0 auto;
   }
-`
+  @media screen and (min-width: 1440px) {
+    width: 1110px;
+    justify-content: center;
+  }
+`;
 const Detail = styled.li`
   color: #6e8098;
 `;

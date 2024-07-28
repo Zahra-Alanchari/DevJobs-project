@@ -5,8 +5,9 @@ const FilterBtn = styled.svg`
   width: 30px;
   position: absolute;
   top: 5px;
-  left: 236px;
+  right: 110px;
   z-index: 2;
+  display: none;
 `;
 export default function FilterIcon() {
 

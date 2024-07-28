@@ -8,8 +8,11 @@ const MainContent = styled.div`
   position: relative;
   top: -50px;
   margin: 0 auto;
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     width: 768px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1440px;
   }
 `;
 const MainBody = styled.div`
@@ -19,10 +22,13 @@ const MainBody = styled.div`
   padding-top: 65px;
   top: 41px;
   left: 0px;
-  @media screen and (min-width: 768px){
-    background-color: red;
+  @media screen and (min-width: 768px) {
+    /* background-color: red; */
     width: 768px;
-    
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1440px;
+    background-color: red;
   }
 `;
 

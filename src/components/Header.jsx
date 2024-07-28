@@ -4,17 +4,21 @@ import SunIcon from "../icon/SunIcon";
 import LogoIcon from "../icon/LogoIcon";
 import ToggleIcon from "../icon/ToggleIcon";
 import styled from "styled-components";
-// import mobile from "../assets/"
 const Head = styled.div`
   height: 136px;
   width: 375px;
   margin: 0 auto;
   background-color: #2ca3c7;
   /* background-image: url("../assets/mobile/bg-pattern-header.svg"); */
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
     /* background-image: url("../assets/mobile/bg-pattern-header.svg"); */
     width: 768px;
     height: 160px;
+  }
+  @media screen and (min-width: 1440px) {
+    /* background-image: url("../assets/mobile/bg-pattern-header.svg"); */
+    width: 1440px;
+    height: 162px;
   }
 `;
 
@@ -24,12 +28,15 @@ const HeaderIcon = styled.div`
   justify-content: space-around;
   align-items: center;
   padding: 20px;
+  @media screen and (min-width: 1440px) {
+    padding: 20px 170px;
+  }
 `;
 
 export default function Header() {
   return (
     <Head>
-      <HeaderIcon >
+      <HeaderIcon>
         <LogoIcon />
         <SunIcon />
         <ToggleIcon />
