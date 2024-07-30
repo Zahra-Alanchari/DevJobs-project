@@ -20,7 +20,6 @@ const JobDescription = styled.div`
   }
   @media screen and (min-width: 1440px) {
     left: 377px;
-    
   }
 `;
 const Items = styled.ul`

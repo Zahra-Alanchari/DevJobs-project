@@ -33,8 +33,6 @@ const LocationBtn = styled.svg`
     z-index: 2;
   }
   @media screen and (min-width: 1440px) {
-    /* display: inline-block; */
-    /* top: 26px; */
     left: 365px;
     z-index: 2;
   }

@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Items = styled.ul`
-  /* background-color: white; */
-  background-color: ${({ darkMode }) =>darkMode ? "white" : "#19202D"};
+  background-color: ${({ darkMode }) => (darkMode ? "white" : "#19202D")};
   padding: 22px;
   margin: 23px;
   border-radius: 5px;
@@ -54,14 +53,11 @@ const Detail = styled.li`
   color: #6e8098;
 `;
 const Position = styled.li`
-  /* color: #19202d; */
-  color: ${({ darkMode }) =>darkMode ? "#19202d" : "white"};
+  color: ${({ darkMode }) => (darkMode ? "#19202d" : "white")};
 `;
 const Location = styled.li`
   color: #5964e0;
 `;
-
-
 const Item = () => {
   const mode = useSelector((state) => state.job.lightMode);
   const dispatch = useDispatch();
@@ -74,51 +70,39 @@ const Item = () => {
   function handleClick(e) {
     const target = e.target.id;
     dispatch(updateSelectedId(target));
+    // e.stopPropagation();
   }
   return (
     <>
       <div>
         <InputText />
       </div>
-      <Link to="/detail">
-        <Wrapper>
-          {showFilteredData === ""
-            ? data.map((item) => (
-                <Items darkMode={mode} onClick={handleClick} key={item.id} id={item.id}>
-                  <li>
-                    <img src={item.logo} alt="scoot" />
-                  </li>
-                  <li>
-                    <Detail>
-                      {item.postedAt} . {item.contract}
-                    </Detail>
-                    <Position darkMode={mode}>
-                      <h4>{item.position}</h4>
-                    </Position>
-                    <Detail>{item.company}</Detail>
-                    <Location>{item.location}</Location>
-                  </li>
-                </Items>
-              ))
-            : showFilteredData.map((item) => (
-                <Items onClick={handleClick} key={item.id} id={item.id}>
-                  <li>
-                    <img src={item.logo} alt="scoot" />
-                  </li>
-                  <li>
-                    <Detail>
-                      {item.postedAt} . {item.contract}
-                    </Detail>
-                    <Position>
-                      <h4>{item.position}</h4>
-                    </Position>
-                    <Detail>{item.company}</Detail>
-                    <Location>{item.location}</Location>
-                  </li>
-                </Items>
-              ))}
-        </Wrapper>
-      </Link>
+      <Wrapper>
+        {(showFilteredData || data).map((item) => (
+          <Link onClick={handleClick} key={item.id} to={"/detail"}>
+            <Items
+              darkMode={mode}
+              
+              key={item.id}
+              id={item.id}
+            >
+              <li>
+                <img onClick={handleClick} key={item.id} src={item.logo} alt="scoot" />
+              </li>
+              <li>
+                <Detail>
+                  {item.postedAt} . {item.contract}
+                </Detail>
+                <Position darkMode={mode}>
+                  <h4>{item.position}</h4>
+                </Position>
+                <Detail>{item.company}</Detail>
+                <Location>{item.location}</Location>
+              </li>
+            </Items>
+          </Link>
+        ))}
+      </Wrapper>
     </>
   );
 };

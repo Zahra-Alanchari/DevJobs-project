@@ -13,6 +13,10 @@ const MainContent = styled.div`
   height: 1950px;
   position: relative;
   @media screen and (min-width: 768px) {
+    width: 768px;
+    height: 1580px;
+  }
+  @media screen and (min-width: 1440px) {
     width: 1440px;
     height: 1580px;
     top: -2px;

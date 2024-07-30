@@ -16,8 +16,8 @@ const Head = styled.div`
   background-image: url(${bgPatternHeader});
   @media screen and (min-width: 768px) {
     background-image: url(${tbPatternHeader});
-    /* background-color: rgb(244, 246, 248); */
-    background-color: ${({ darkMode }) =>darkMode ? "rgb(244, 246, 248)" : "#121721"};
+    background-color: ${({ darkMode }) =>
+      darkMode ? "rgb(244, 246, 248)" : "#121721"};
     width: 768px;
     height: 160px;
   }
@@ -38,9 +38,6 @@ const HeaderIcon = styled.div`
     padding: 20px 170px;
   }
 `;
-// darkMode={mode}
-// background-color: ${({ darkMode }) =>darkMode ? "rgb(244, 246, 248)" : "#19202D"};
-// const mode = useSelector((state) => state.job.lightMode);
 
 export default function Header() {
   const mode = useSelector((state) => state.job.lightMode);

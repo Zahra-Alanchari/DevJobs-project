@@ -18,19 +18,16 @@ const MainContent = styled.div`
 `;
 const MainBody = styled.div`
   width: 375px;
-  /* background-color: rgb(244, 246, 248); */
   background-color: ${({ darkMode }) =>darkMode ? "rgb(244, 246, 248)" : "#121721"};
   position: absolute;
   padding-top: 65px;
   top: 41px;
   left: 0px;
   @media screen and (min-width: 768px) {
-    /* background-color: red; */
     width: 768px;
   }
   @media screen and (min-width: 1440px) {
     width: 1440px;
-    /* background-color: red; */
   }
 `;
 
