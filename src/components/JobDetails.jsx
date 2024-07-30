@@ -3,11 +3,13 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const JobDescription = styled.div`
-  background-color: white;
+  background-color: red;
   width: 327px;
   position: absolute;
   top: 220px;
   left: 23px;
+  height: 100VH;
+  overflow: auto;
 `;
 
 const Items = styled.ul`
@@ -32,11 +34,6 @@ const ApplyButton = styled.button`
   border-radius: 5px;
   background-color: #5964e0;
   color: white;
-  &::after {
-    content: "";
-    display: block;
-    clear: both;
-  }
 `;
 const ApplyButtonend = styled.button`
   width: 279px;
@@ -44,14 +41,20 @@ const ApplyButtonend = styled.button`
   border-radius: 5px;
   background-color: #5964e0;
   color: white;
+  &::after{
+    clear: both;
+    display: block;
+    content: '';
+  }
 `;
 const Introduction = styled.div`
   width: 300px;
-  height: 205px;
+  height: auto;
   position: absolute;
   top: 210px;
   left: 23px;
   color: #6e8098;
+  /* overflow: auto; */
   /* display: flex; */
 `;
 const Title = styled.h3`
