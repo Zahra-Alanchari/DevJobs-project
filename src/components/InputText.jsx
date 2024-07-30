@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import FilterIcon from "../icon/FilterIcon";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   fullFilter,
   setLocationFilter,
@@ -138,8 +138,65 @@ const InputContainer = styled.div`
     left: 170px;
   }
 `;
-
+const Dialog = styled.dialog`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  width: 280px;
+  height: 217px;
+`;
+const OverLay = styled.div`
+  position: fixed;
+  top: 0;
+  width: 375px;
+  margin: 0 auto;
+  height: 100%;
+  background: #bab7b786;
+  z-index: 99;
+`;
+const CloseModalBtn = styled.button`
+  background-color: #5964e0;
+  height: 48px;
+  width: 289px;
+  position: absolute;
+  top: 180px;
+  right: 16px;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+`;
+const ModalLocBtn = styled.input`
+  /* border-radius: 5px; */
+  position: absolute;
+  left: 0;
+  border-bottom: 1px solid lightgray;
+  width: 320px;
+  height: 80px;
+  &::placeholder {
+    padding-left: 50px;
+    color: #6e8098;
+  }
+  &[placeholder] {
+    color: black;
+  }
+`;
+const WorkTime = styled.label`
+  position: absolute;
+  top: 126px;
+  left: 40px;
+`;
 export default function InputText() {
+  const [open, setOpen] = useState(false);
   const inputContent = useSelector((state) => state.job.input);
   const locationInput = useSelector((state) => state.job.location);
   const data = useSelector((state) => state.job.job);
@@ -154,8 +211,15 @@ export default function InputText() {
   };
   function handleCheck(e) {
     const status = e.target.checked;
-    console.log(status, "status");
+    // console.log(status, "status");
     dispatch(workTimeFilter(status));
+  }
+
+  function handleOpenModal() {
+    setOpen(true);
+  }
+  function handleCloseModal() {
+    setOpen(false);
   }
 
   const selectedTitleData = useSelector((state) => state.job.input);
@@ -201,9 +265,9 @@ export default function InputText() {
           <input onChange={handleCheck} type="checkbox" />
           Full Time only
         </label>
-        <div>
+        <button onClick={handleOpenModal}>
           <FilterIcon />
-        </div>
+        </button>
       </InputContainer>
       <SearchIconbtn onClick={handleGetJob}>
         <span>
@@ -211,6 +275,25 @@ export default function InputText() {
         </span>
         <span>Search</span>
       </SearchIconbtn>
+      {open && (
+        <OverLay>
+          <Dialog open>
+            <ModalLocBtn
+              type="text"
+              onChange={handleLocationChange}
+              value={locationInput}
+              placeholder="filter by location"
+            ></ModalLocBtn>
+            <WorkTime>
+              <input onChange={handleCheck} type="checkbox" />
+              Full Time only
+            </WorkTime>
+            <CloseModalBtn onClick={handleCloseModal}>
+              <span>Search</span>
+            </CloseModalBtn>
+          </Dialog>
+        </OverLay>
+      )}
     </div>
   );
 }

@@ -1,20 +1,34 @@
 import React, { useEffect, useRef } from "react";
+import styled from "styled-components";
 
-const Modal = ({ openModal, closeModal, children }) => {
-  const ref = useRef();
+const ModalSearch = styled.input`
+    /* display: none; */
+  /* border-radius: 5px; */
+  &::placeholder {
+    padding-left: 18px;
+    color: #6e8098;
+  }
+  &[placeholder] {
+    color: black;
+    padding-left: 28px;
+  }
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+`
 
-  useEffect(() => {
-    if (openModal) {
-      ref.current?.showModal();
-    } else {
-      ref.current?.close();
-    }
-  }, [openModal]);
-
+const Modal = () => {
   return (
-    <dialog ref={ref} onCancel={closeModal}>
-      {children}
-      <button onClick={closeModal}>Close</button>
+    <dialog>
+      <LocBtn
+          type="text"
+          onChange={handleLocationChange}
+          value={locationInput}
+          placeholder="filter by location"
+        ></LocBtn>
+      
+        <button>Close</button>
+      
     </dialog>
   );
 };
