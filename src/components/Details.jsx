@@ -3,36 +3,30 @@ import Header from "./Header";
 import CompanyProfile from "./CompanyProfile";
 import JobDetails from "./JobDetails";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
-const MainBody = styled.div`
-  width: 375px;
-  background-color: #00ff2f;
-  position: absolute;
-  padding-top: 65px;
-  top: -11px;
-  left: 0px;
-  /* height: auto; */
-  /* overflow: auto; */
-  /* display: block; */
-  /* height: 2127px; */
-`;
 const MainContent = styled.div`
   width: 375px;
-  position: relative;
-  top: 10px;
   margin: 0 auto;
-  /* overflow: auto; */
+  background-color: ${({ darkMode }) =>
+    darkMode ? "rgb(244, 246, 248)" : "#121721"};
+  height: 1950px;
+  position: relative;
+  @media screen and (min-width: 768px) {
+    width: 1440px;
+    height: 1580px;
+    top: -2px;
+  }
 `;
 
 export default function Details() {
+  const mode = useSelector((state) => state.job.lightMode);
   return (
     <>
       <Header />
-      <MainContent>
-        <MainBody>
-          <CompanyProfile />
-          <JobDetails />
-        </MainBody>
+      <MainContent darkMode={mode}>
+        <CompanyProfile />
+        <JobDetails />
       </MainContent>
     </>
   );

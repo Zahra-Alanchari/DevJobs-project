@@ -32,6 +32,12 @@ const LocationBtn = styled.svg`
     left: 199px;
     z-index: 2;
   }
+  @media screen and (min-width: 1440px) {
+    /* display: inline-block; */
+    /* top: 26px; */
+    left: 365px;
+    z-index: 2;
+  }
 `;
 export default function FilterIcon() {
   return (

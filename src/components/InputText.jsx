@@ -19,12 +19,13 @@ const TextBtn = styled.input`
   top: -26px;
   left: 22px;
   z-index: 1;
+  background-color: ${({ darkMode }) =>darkMode ? "white" : "#19202D"};
   &::placeholder {
     padding-left: 18px;
     color: #6e8098;
   }
   &[placeholder] {
-    color: black;
+    color: ${({ darkMode }) =>darkMode ? "black" : "white"};
     padding-left: 28px;
   }
   @media screen and (min-width: 768px) {
@@ -45,12 +46,13 @@ const TextBtn = styled.input`
 const LocBtn = styled.input`
   display: none;
   border-radius: 5px;
+  background-color: ${({ darkMode }) =>darkMode ? "white" : "#19202D"};
   &::placeholder {
     padding-left: 18px;
     color: #6e8098;
   }
   &[placeholder] {
-    color: black;
+    color: ${({ darkMode }) =>darkMode ? "black" : "white"};
     padding-left: 28px;
   }
   @media screen and (min-width: 768px) {
@@ -108,12 +110,13 @@ const InputContainer = styled.div`
     display: none;
     margin-right: 40px;
     @media screen and (min-width: 768px) {
-      background-color: white;
+      background-color: ${({ darkMode }) =>darkMode ? "white" : "#19202D"};
       width: 240px;
       height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
+      color:${({ darkMode }) =>darkMode ? "#19202D" : "white"} ;
     }
     @media screen and (min-width: 1440px) {
       width: 415px;
@@ -123,7 +126,7 @@ const InputContainer = styled.div`
     width: 640px;
     height: 80px;
     border-radius: 5px;
-    background-color: white;
+    background-color: ${({ darkMode }) =>darkMode ? "rgb(244, 246, 248)" : "#19202D"};
     position: absolute;
     top: -26px;
     left: 60px;
@@ -143,7 +146,7 @@ const Dialog = styled.dialog`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
+  background: ${({ darkMode }) =>darkMode ? "white" : "#19202D"};
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -157,7 +160,7 @@ const OverLay = styled.div`
   width: 375px;
   margin: 0 auto;
   height: 100%;
-  background: #bab7b786;
+  background:${({ darkMode }) =>darkMode ? "#bab7b786" : "#19202d99"};
   z-index: 99;
 `;
 const CloseModalBtn = styled.button`
@@ -182,21 +185,28 @@ const ModalLocBtn = styled.input`
   border-bottom: 1px solid lightgray;
   width: 320px;
   height: 80px;
+  background-color: ${({ darkMode }) =>darkMode ? "white" : "#19202D"};
   &::placeholder {
     padding-left: 50px;
     color: #6e8098;
   }
   &[placeholder] {
-    color: black;
+    color: ${({ darkMode }) =>darkMode ? "black" : "white"};;
   }
 `;
 const WorkTime = styled.label`
   position: absolute;
   top: 126px;
   left: 40px;
+  color: ${({ darkMode }) =>darkMode ? "black" : "white"};;
 `;
+
+// darkMode={mode}
+// background-color: ${({ darkMode }) =>darkMode ? "rgb(244, 246, 248)" : "#19202D"};
+// const mode = useSelector((state) => state.job.lightMode);
 export default function InputText() {
   const [open, setOpen] = useState(false);
+  const mode = useSelector((state) => state.job.lightMode);
   const inputContent = useSelector((state) => state.job.input);
   const locationInput = useSelector((state) => state.job.location);
   const data = useSelector((state) => state.job.job);
@@ -248,14 +258,14 @@ export default function InputText() {
   }
   return (
     <div>
-      <InputContainer>
-        <TextBtn
+      <InputContainer darkMode={mode}>
+        <TextBtn darkMode={mode}
           onChange={handleChange}
           type="text"
           placeholder="filter by title"
           value={inputContent}
         ></TextBtn>
-        <LocBtn
+        <LocBtn darkMode={mode}
           type="text"
           onChange={handleLocationChange}
           value={locationInput}

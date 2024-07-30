@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Item from "./Item";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const MainContent = styled.div`
   width: 375px;
@@ -17,7 +18,8 @@ const MainContent = styled.div`
 `;
 const MainBody = styled.div`
   width: 375px;
-  background-color: rgb(244, 246, 248);
+  /* background-color: rgb(244, 246, 248); */
+  background-color: ${({ darkMode }) =>darkMode ? "rgb(244, 246, 248)" : "#121721"};
   position: absolute;
   padding-top: 65px;
   top: 41px;
@@ -33,11 +35,13 @@ const MainBody = styled.div`
 `;
 
 export default function Main() {
+  const mode = useSelector((state) => state.job.lightMode);
+
   return (
     <div>
       <Header />
       <MainContent>
-        <MainBody>
+        <MainBody darkMode={mode}>
           <Item />
         </MainBody>
       </MainContent>

@@ -7,6 +7,7 @@ import styled from "styled-components";
 import bgPatternHeader from "../assets/mobile/bg-pattern-header.svg";
 import tbPatternHeader from "../assets/tablet/bg-pattern-header.svg";
 import dsPatternHeader from "../assets/desktop/bg-pattern-header.svg";
+import { useSelector } from "react-redux";
 
 const Head = styled.div`
   height: 136px;
@@ -15,7 +16,8 @@ const Head = styled.div`
   background-image: url(${bgPatternHeader});
   @media screen and (min-width: 768px) {
     background-image: url(${tbPatternHeader});
-    background-color: rgb(244, 246, 248);
+    /* background-color: rgb(244, 246, 248); */
+    background-color: ${({ darkMode }) =>darkMode ? "rgb(244, 246, 248)" : "#121721"};
     width: 768px;
     height: 160px;
   }
@@ -36,10 +38,14 @@ const HeaderIcon = styled.div`
     padding: 20px 170px;
   }
 `;
+// darkMode={mode}
+// background-color: ${({ darkMode }) =>darkMode ? "rgb(244, 246, 248)" : "#19202D"};
+// const mode = useSelector((state) => state.job.lightMode);
 
 export default function Header() {
+  const mode = useSelector((state) => state.job.lightMode);
   return (
-    <Head>
+    <Head darkMode={mode}>
       <HeaderIcon>
         <LogoIcon />
         <SunIcon />

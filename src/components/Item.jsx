@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Items = styled.ul`
-  background-color: white;
+  /* background-color: white; */
+  background-color: ${({ darkMode }) =>darkMode ? "white" : "#19202D"};
   padding: 22px;
   margin: 23px;
   border-radius: 5px;
@@ -53,13 +54,16 @@ const Detail = styled.li`
   color: #6e8098;
 `;
 const Position = styled.li`
-  color: #19202d;
+  /* color: #19202d; */
+  color: ${({ darkMode }) =>darkMode ? "#19202d" : "white"};
 `;
 const Location = styled.li`
   color: #5964e0;
 `;
 
+
 const Item = () => {
+  const mode = useSelector((state) => state.job.lightMode);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -80,7 +84,7 @@ const Item = () => {
         <Wrapper>
           {showFilteredData === ""
             ? data.map((item) => (
-                <Items onClick={handleClick} key={item.id} id={item.id}>
+                <Items darkMode={mode} onClick={handleClick} key={item.id} id={item.id}>
                   <li>
                     <img src={item.logo} alt="scoot" />
                   </li>
@@ -88,7 +92,7 @@ const Item = () => {
                     <Detail>
                       {item.postedAt} . {item.contract}
                     </Detail>
-                    <Position>
+                    <Position darkMode={mode}>
                       <h4>{item.position}</h4>
                     </Position>
                     <Detail>{item.company}</Detail>
