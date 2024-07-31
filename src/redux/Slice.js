@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import getJob from "../jobsApi";
+import { createSlice } from "@reduxjs/toolkit";
+
 import { fetchgetAllJobs } from "./action";
 
 const initialState = {
