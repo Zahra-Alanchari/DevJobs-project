@@ -6,9 +6,7 @@ export default function ToggleIcon() {
   const mode = useSelector(state => state.job.lightMode)
   const dispatch = useDispatch()
   function handleClick(e){
-    console.log(e.target.checked,"chekh dare?")
     dispatch(updateMode(!mode))
-    console.log(mode,"mode")
   }
 
   // dark mode is true

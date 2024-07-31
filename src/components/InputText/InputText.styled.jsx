@@ -11,12 +11,12 @@ export const TextBtn = styled.input`
   z-index: 1;
   background-color: ${({ darkMode }) => (darkMode ? "white" : "#19202D")};
   &::placeholder {
-    padding-left: 18px;
+    /* padding-left: 18px; */
     color: #6e8098;
   }
   &[placeholder] {
     color: ${({ darkMode }) => (darkMode ? "black" : "white")};
-    padding-left: 28px;
+    padding-left: 35px;
   }
   @media screen and (min-width: 768px) {
     width: 190px;
@@ -38,16 +38,15 @@ export const LocBtn = styled.input`
   border-radius: 5px;
   background-color: ${({ darkMode }) => (darkMode ? "white" : "#19202D")};
   &::placeholder {
-    padding-left: 18px;
     color: #6e8098;
   }
   &[placeholder] {
     color: ${({ darkMode }) => (darkMode ? "black" : "white")};
-    padding-left: 28px;
+    padding-left: 50px;
   }
   @media screen and (min-width: 768px) {
     display: inline-block;
-    width: 190px;
+    width: 150px;
     height: 80px;
     top: 0;
     border-right: 1px solid gray;

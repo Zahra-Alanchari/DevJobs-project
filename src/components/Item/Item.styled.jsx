@@ -53,7 +53,6 @@ export const Location = styled.li`
 export const WrapperLink = styled(Link)`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 `;
 export const LogoContainer = styled.div`
   background-color: ${({ logoColor }) => logoColor || "transparent"};

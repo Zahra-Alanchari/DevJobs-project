@@ -41,7 +41,6 @@ export default function InputText() {
   const selectedLocationData = useSelector((state) => state.job.location);
   const selectedTimeData = useSelector((state) => state.job.fullTime);
   const showFilteredData = useSelector((state) => state.job.filteredData);
-  console.log(showFilteredData, "status");
 
   function handleGetJob() {
     const filterData = data.filter((job) => {
