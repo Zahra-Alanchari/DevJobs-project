@@ -1,16 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
-import FilterIcon from "../icon/FilterIcon";
-import React, { useState } from "react";
-import {
-  fullFilter,
-  setLocationFilter,
-  updateInput,
-  workTimeFilter,
-} from "../redux/Slice";
 import styled from "styled-components";
-import SearchIcon from "../icon/SearchIcon";
 
-const TextBtn = styled.input`
+export const TextBtn = styled.input`
   width: 315px;
   height: 80px;
   border-radius: 5px;
@@ -43,7 +33,7 @@ const TextBtn = styled.input`
     left: 145px;
   }
 `;
-const LocBtn = styled.input`
+export const LocBtn = styled.input`
   display: none;
   border-radius: 5px;
   background-color: ${({ darkMode }) => (darkMode ? "white" : "#19202D")};
@@ -68,7 +58,7 @@ const LocBtn = styled.input`
     height: 80px;
   }
 `;
-const SearchIconbtn = styled.button`
+export const SearchIconbtn = styled.button`
   background-color: #5964e0;
   height: 48px;
   width: 48px;
@@ -105,7 +95,7 @@ const SearchIconbtn = styled.button`
   }
 `;
 
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
   & input + label {
     display: none;
     margin-right: 40px;
@@ -142,7 +132,7 @@ const InputContainer = styled.div`
     left: 170px;
   }
 `;
-const Dialog = styled.dialog`
+export const Dialog = styled.dialog`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -155,7 +145,7 @@ const Dialog = styled.dialog`
   width: 280px;
   height: 217px;
 `;
-const OverLay = styled.div`
+export const OverLay = styled.div`
   position: fixed;
   top: 0;
   width: 375px;
@@ -164,7 +154,7 @@ const OverLay = styled.div`
   background: ${({ darkMode }) => (darkMode ? "#bab7b786" : "#19202d99")};
   z-index: 99;
 `;
-const CloseModalBtn = styled.button`
+export const CloseModalBtn = styled.button`
   background-color: #5964e0;
   height: 48px;
   width: 289px;
@@ -179,7 +169,7 @@ const CloseModalBtn = styled.button`
   cursor: pointer;
   color: white;
 `;
-const ModalLocBtn = styled.input`
+export const ModalLocBtn = styled.input`
   position: absolute;
   left: 0;
   border-bottom: 1px solid lightgray;
@@ -194,112 +184,9 @@ const ModalLocBtn = styled.input`
     color: ${({ darkMode }) => (darkMode ? "black" : "white")};
   }
 `;
-const WorkTime = styled.label`
+export const WorkTime = styled.label`
   position: absolute;
   top: 126px;
   left: 40px;
   color: ${({ darkMode }) => (darkMode ? "black" : "white")};
 `;
-export default function InputText() {
-  const [open, setOpen] = useState(false);
-  const mode = useSelector((state) => state.job.lightMode);
-  const inputContent = useSelector((state) => state.job.input);
-  const locationInput = useSelector((state) => state.job.location);
-  const data = useSelector((state) => state.job.job);
-  const dispatch = useDispatch();
-  function handleChange(e) {
-    const data = e.target.value.toLowerCase();
-    dispatch(updateInput(data));
-  }
-  const handleLocationChange = (e) => {
-    dispatch(setLocationFilter(e.target.value));
-  };
-  function handleCheck(e) {
-    const status = e.target.checked;
-    dispatch(workTimeFilter(status));
-  }
-
-  function handleOpenModal() {
-    setOpen(true);
-  }
-  function handleCloseModal() {
-    setOpen(false);
-  }
-
-  const selectedTitleData = useSelector((state) => state.job.input);
-  const selectedLocationData = useSelector((state) => state.job.location);
-  const selectedTimeData = useSelector((state) => state.job.fullTime);
-  const showFilteredData = useSelector((state) => state.job.filteredData);
-  console.log(showFilteredData, "status");
-
-  function handleGetJob() {
-    const filterData = data.filter((job) => {
-      if (
-        selectedTitleData === "" &&
-        selectedLocationData === "" &&
-        (selectedTimeData === "" || selectedTimeData === false)
-      ) {
-        return job;
-      } else {
-        return (
-          job.position.toLowerCase().includes(selectedTitleData) &&
-          job.location.toLowerCase().includes(selectedLocationData) &&
-          (selectedTimeData ? job.contract === "Full Time" : true)
-        );
-      }
-    });
-    dispatch(fullFilter(filterData));
-  }
-  return (
-    <div>
-      <InputContainer darkMode={mode}>
-        <TextBtn
-          darkMode={mode}
-          onChange={handleChange}
-          type="text"
-          placeholder="filter by title"
-          value={inputContent}
-        ></TextBtn>
-        <LocBtn
-          darkMode={mode}
-          type="text"
-          onChange={handleLocationChange}
-          value={locationInput}
-          placeholder="filter by location"
-        ></LocBtn>
-        <label>
-          <input onChange={handleCheck} type="checkbox" />
-          Full Time only
-        </label>
-        <button onClick={handleOpenModal}>
-          <FilterIcon />
-        </button>
-      </InputContainer>
-      <SearchIconbtn onClick={handleGetJob}>
-        <span>
-          <SearchIcon />
-        </span>
-        <span>Search</span>
-      </SearchIconbtn>
-      {open && (
-        <OverLay>
-          <Dialog open>
-            <ModalLocBtn
-              type="text"
-              onChange={handleLocationChange}
-              value={locationInput}
-              placeholder="filter by location"
-            ></ModalLocBtn>
-            <WorkTime>
-              <input onChange={handleCheck} type="checkbox" />
-              Full Time only
-            </WorkTime>
-            <CloseModalBtn onClick={handleCloseModal}>
-              <span>Search</span>
-            </CloseModalBtn>
-          </Dialog>
-        </OverLay>
-      )}
-    </div>
-  );
-}

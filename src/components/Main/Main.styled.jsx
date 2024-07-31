@@ -1,10 +1,6 @@
-import React from "react";
-import Header from "./Header";
-import Item from "./Item";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
 
-const MainContent = styled.div`
+export const MainContent = styled.div`
   width: 375px;
   position: relative;
   top: -50px;
@@ -16,7 +12,7 @@ const MainContent = styled.div`
     width: 1440px;
   }
 `;
-const MainBody = styled.div`
+export const MainBody = styled.div`
   width: 375px;
   background-color: ${({ darkMode }) =>darkMode ? "rgb(244, 246, 248)" : "#121721"};
   position: absolute;
@@ -30,18 +26,3 @@ const MainBody = styled.div`
     width: 1440px;
   }
 `;
-
-export default function Main() {
-  const mode = useSelector((state) => state.job.lightMode);
-
-  return (
-    <div>
-      <Header />
-      <MainContent>
-        <MainBody darkMode={mode}>
-          <Item />
-        </MainBody>
-      </MainContent>
-    </div>
-  );
-}

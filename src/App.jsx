@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import Main from "./components/Main";
+import Main from "./components/Main/Main";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Details from "./components/Details";
+import Details from "./components/Details/Details";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
