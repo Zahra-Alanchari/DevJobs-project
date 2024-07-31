@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Items = styled.ul`
@@ -15,14 +16,11 @@ export const Items = styled.ul`
     }
   }
   & img {
-    background-color: blue;
-    width: 50px;
-    height: 50px;
+    width: 34px;
+    height: 20px;
     border-radius: 5px;
     vertical-align: middle;
     position: absolute;
-    margin-top: -40px;
-    margin-left: -10px;
   }
   @media screen and (min-width: 768px) {
     width: 250px;
@@ -51,4 +49,24 @@ export const Position = styled.li`
 `;
 export const Location = styled.li`
   color: #5964e0;
+`;
+export const WrapperLink = styled(Link)`
+  display: flex;
+  /* margin-left: 30px; */
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+export const LogoContainer = styled.div`
+  background-color: ${({ logoColor }) => logoColor || "transparent"};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 10px;
+  position: absolute;
+  margin-top: -40px;
+  margin-left: -10px;
 `;

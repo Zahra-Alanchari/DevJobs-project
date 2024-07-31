@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import {Profile} from "./CompanyProfile.styled"
+import { CompanySite, LogoContainer, Profile } from "./CompanyProfile.styled";
 export default function CompanyProfile() {
   const mode = useSelector((state) => state.job.lightMode);
   const data = useSelector((state) => state.job.job);
@@ -9,9 +9,13 @@ export default function CompanyProfile() {
   return (
     <>
       <Profile darkMode={mode}>
-        {/* <img src="" alt="" /> */}
-        <span>{selectedJob.company}</span>
-        <span>{selectedJob.company}.com</span>
+        <LogoContainer logoColor={selectedJob.logoBackground}>
+          <img src={selectedJob.logo} alt={selectedJob.company} />
+        </LogoContainer>
+        <CompanySite>
+          <span>{selectedJob.company}</span>
+          <span>{selectedJob.company}.com</span>
+        </CompanySite>
         <a href={selectedJob.website}>Company Site</a>
       </Profile>
     </>

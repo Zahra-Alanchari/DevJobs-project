@@ -98,7 +98,7 @@ export const SearchIconbtn = styled.button`
 export const InputContainer = styled.div`
   & input + label {
     display: none;
-    margin-right: 40px;
+    margin-right: 82px;
     @media screen and (min-width: 768px) {
       background-color: ${({ darkMode }) => (darkMode ? "white" : "#19202D")};
       width: 240px;
@@ -117,7 +117,7 @@ export const InputContainer = styled.div`
     height: 80px;
     border-radius: 5px;
     background-color: ${({ darkMode }) =>
-      darkMode ? "rgb(244, 246, 248)" : "#19202D"};
+      darkMode ? "white" : "#19202D"};
     position: absolute;
     top: -26px;
     left: 60px;

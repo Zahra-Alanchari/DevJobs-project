@@ -5,7 +5,15 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import InputText from "../InputText/InputText";
 import { fetchgetAllJobs } from "../../redux/action";
-import { Detail, Items, Location, Position, Wrapper } from "./Item.styled";
+import {
+  Detail,
+  Items,
+  Location,
+  LogoContainer,
+  Position,
+  Wrapper,
+  WrapperLink,
+} from "./Item.styled";
 
 const Item = () => {
   const mode = useSelector((state) => state.job.lightMode);
@@ -28,7 +36,7 @@ const Item = () => {
         <InputText />
       </div>
       <Wrapper>
-        <Link to={"/detail"}>
+        <WrapperLink to={"/detail"}>
           {(showFilteredData || data)?.map((item) => {
             return (
               <Items
@@ -38,12 +46,14 @@ const Item = () => {
                 id={item.id}
               >
                 <li>
-                  <img
-                    onClick={handleClick}
-                    key={item.id}
-                    src={item.logo}
-                    alt="scoot"
-                  />
+                  <LogoContainer logoColor={item.logoBackground}>
+                    <img
+                      onClick={handleClick}
+                      key={item.id}
+                      src={item.logo}
+                      alt={item.company}
+                    />
+                  </LogoContainer>
                 </li>
                 <li>
                   <Detail>
@@ -58,7 +68,7 @@ const Item = () => {
               </Items>
             );
           })}
-        </Link>
+        </WrapperLink>
       </Wrapper>
     </>
   );
