@@ -94,15 +94,15 @@ export default function InputText() {
       </SearchIconbtn>
       {open && (
         <OverLay>
-          <Dialog open>
-            <ModalLocBtn
+          <Dialog open darkMode={mode}>
+            <ModalLocBtn darkMode={mode}
               type="text"
               onChange={handleLocationChange}
               value={locationInput}
               placeholder="filter by location"
             ></ModalLocBtn>
-            <WorkTime>
-              <input onChange={handleCheck} type="checkbox" />
+            <WorkTime darkMode={mode}>
+              <input  onChange={handleCheck} type="checkbox" />
               Full Time only
             </WorkTime>
             <CloseModalBtn onClick={handleCloseModal}>

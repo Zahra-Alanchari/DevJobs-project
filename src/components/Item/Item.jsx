@@ -7,7 +7,6 @@ import InputText from "../InputText/InputText";
 import { fetchgetAllJobs } from "../../redux/action";
 import { Detail, Items, Location, Position, Wrapper } from "./Item.styled";
 
-
 const Item = () => {
   const mode = useSelector((state) => state.job.lightMode);
   const dispatch = useDispatch();
@@ -17,41 +16,49 @@ const Item = () => {
   }, [dispatch]);
   const data = useSelector((state) => state.job.job);
   const showFilteredData = useSelector((state) => state.job.filteredData);
+
   function handleClick(e) {
-    const target = e.target.id;
+    const target = e.currentTarget.id;
     dispatch(updateSelectedId(target));
-    // e.stopPropagation();
   }
+
   return (
     <>
       <div>
         <InputText />
       </div>
       <Wrapper>
-        {(showFilteredData || data).map((item) => (
-          <Link onClick={handleClick} key={item.id} to={"/detail"}>
-            <Items darkMode={mode} key={item.id} id={item.id}>
-              <li>
-                <img
-                  onClick={handleClick}
-                  key={item.id}
-                  src={item.logo}
-                  alt="scoot"
-                />
-              </li>
-              <li>
-                <Detail>
-                  {item.postedAt} . {item.contract}
-                </Detail>
-                <Position darkMode={mode}>
-                  <h4>{item.position}</h4>
-                </Position>
-                <Detail>{item.company}</Detail>
-                <Location>{item.location}</Location>
-              </li>
-            </Items>
-          </Link>
-        ))}
+        <Link to={"/detail"}>
+          {(showFilteredData || data)?.map((item) => {
+            return (
+              <Items
+                darkMode={mode}
+                onClick={handleClick}
+                key={item.id}
+                id={item.id}
+              >
+                <li>
+                  <img
+                    onClick={handleClick}
+                    key={item.id}
+                    src={item.logo}
+                    alt="scoot"
+                  />
+                </li>
+                <li>
+                  <Detail>
+                    {item && item.postedAt} . {item && item.contract}
+                  </Detail>
+                  <Position darkMode={mode}>
+                    <h4>{item.position}</h4>
+                  </Position>
+                  <Detail>{item.company}</Detail>
+                  <Location>{item.location}</Location>
+                </li>
+              </Items>
+            );
+          })}
+        </Link>
       </Wrapper>
     </>
   );

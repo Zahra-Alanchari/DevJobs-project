@@ -137,7 +137,7 @@ export const Dialog = styled.dialog`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: ${({ darkMode }) => (darkMode ? "white" : "#19202D")};
+  background-color: ${({ darkMode }) => (darkMode ? "white" : "#19202D")};
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
