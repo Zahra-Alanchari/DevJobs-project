@@ -29,11 +29,11 @@ const LocationBtn = styled.svg`
   @media screen and (min-width: 768px) {
     display: inline-block;
     top: 26px;
-    left: 220px;
+    left: 240px;
     z-index: 2;
   }
   @media screen and (min-width: 1440px) {
-    left: 365px;
+    left: 355px;
     z-index: 2;
   }
 `;

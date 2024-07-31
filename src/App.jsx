@@ -7,7 +7,6 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 export default function App() {
-  // const [id, setId] = useState(null);
 
   return (
     <Provider store={store}>
