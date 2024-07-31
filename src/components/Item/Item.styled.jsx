@@ -52,7 +52,6 @@ export const Location = styled.li`
 `;
 export const WrapperLink = styled(Link)`
   display: flex;
-  /* margin-left: 30px; */
   flex-wrap: wrap;
   justify-content: center;
 `;
